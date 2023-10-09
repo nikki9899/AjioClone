@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 
-function fun2() {
+function Fun2() {
   return (
     <div>
       <Carousel showThumbs={false}>
@@ -57,4 +57,4 @@ function fun2() {
   );
 }
 
-export default fun2;
+export default Fun2;

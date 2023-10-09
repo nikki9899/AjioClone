@@ -22,9 +22,9 @@ function Products() {
         <div className="mt-4  ml-52 text-sm  flex justify-center">
           <h3 className="font-style-italic text-bold">
             Ethnic elegance, a fusion of hues and a whirlwind of styles from
-            much-loved ethnic wear brands – go ahead and explore all <br /> the
-            women’s kurtas on AJIO! The collection comprises of all the latest
-            trends – from asymmetric hems to traditional Ikat
+            much-loved ethnic wear brands  go ahead and explore all <br /> the
+            women kurtas on AJIO! The collection comprises of all the latest
+            trends from asymmetric hems to traditional Ikat
             <br /> prints. +
           </h3>
         </div>
