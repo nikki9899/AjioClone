@@ -17,15 +17,21 @@ function Navbar() {
       </div>
       <div className="h-full w-3/5 border border-transparent mx-4">
         <div className="h-1/2 w-full border border-transparent flex justify-end space-x-5 items-center hover:cursor-pointer">
+          <Link href="/Register">
+            <p className="text-xs text-gray-600 font-sans">
+              Sign Up / Join AJIO
+            </p>
+          </Link>
           <Link href="/login">
             <p className="text-xs text-gray-600 font-sans">
               Sign In / Join AJIO
             </p>
           </Link>
+
           <p href="" className="text-xs text-gray-600 font-sans">
             Customer Care
           </p>
-          <Link href="/your-destination-page">
+          <Link href="/">
             <p className="h-full bg-black text-white text-xs font-sans  mr-4 cursor-pointer">
               Visit AJIOLUXE
             </p>

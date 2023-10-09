@@ -4,60 +4,88 @@ import Navbar from "@/components/headerfooter/header";
 import Footer from "@/components/headerfooter/Footer";
 
 export default function Page() {
-  const router = useRouter();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const loginAuth = async () => {
-    console.log(email);
-    const response = await fetch(
-      "https://backend-liard-eight.vercel.app/api/auth/getUser",
-      {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-      }
-    );
-
-    const data = await response.json();
-
-    if (!data.success) {
-      alert("User does not exist. Kindly Register");
-      router.push("/login");
-      return;
+  const sendData = async () => {
+    if (!name || !email || !password) {
+      return alert("All fields are mandatory please fill");
     }
 
-    if (data.success) router.push("/productpage");
-    else return alert("Invalid credentials");
+    let result = await fetch("https://backend-liard-eight.vercel.app/api/auth", {
+      method: "POST",
+      body: JSON.stringify({ name, email, password }),
+    });
+     console.log(result)
+    result = await result.json();
+    if (result.success) {
+      alert("Registration Succesful");
+      router.push("/Register");
+    }
   };
 
   return (
     <div>
       <Navbar />
-      <div className="bg-white min-h-screen flex items-center justify-center w-full">
-        <div className="w-96 bg-white shadow-2xl p-4 overflow-hidden">
-          <h1 className="font-Assistant text-2xl font-semibold mt-4 justify-center flex mb-6">
-            Sign Up
-          </h1>
-          <input
-            className="border w-[80%]  p-4 m-4"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-          />
-          <input
-            type="password"
-            className="border w-[80%]  p-4 m-4"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-          />
-          <button
-            onClick={loginAuth}
-            className="border text-white bg-yellow-400 w-52 mx-14  p-4"
-          >
-            Login
-          </button>
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="mx-auto mt-12 w-96 bg-white shadow-2xl p-4 overflow-hidden">
+          <div className="w-88 mx-auto bg-white p-4">
+            <h1 className="text-4xl text-black font-sans">Welcome To AJIO</h1>
+
+            <div className="h-25 mt-10">
+              <p className="text-lg text-gray-700 leading-tight font-sans">
+                Join / Sign In using Email
+              </p>
+            </div>
+
+            <div className="w-72 mx-auto mt-[50px] mb-4">
+              <p className="text-base text-black font-sans mb-2">Name*</p>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="name"
+              />
+            </div>
+
+            <div className="w-72 mx-auto mb-4">
+              <p className="text-base text-black font-sans mb-2">Email*</p>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="email"
+              />
+            </div>
+
+            <div className="w-72 mx-auto mb-4">
+              <p className="text-base text-black font-sans mb-2">Password*</p>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="password"
+              />
+            </div>
+
+            <button
+              className="bg-yellow-400 text-white ml-[30%] rounded w-36 p-4"
+              onClick={sendData}
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
       </div>
-      <Footer />
+      <div className="mt-20">
+        {" "}
+        <Footer />
+      </div>
     </div>
   );
 }

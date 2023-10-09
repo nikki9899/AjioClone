@@ -19,7 +19,7 @@ function WishList() {
       {wishlistItems.length === 0 ? (
         <p className="flex text-xl py-44 justify-center">0 Item in wishlist</p>
       ) : (
-        <div>
+        <div className="grid grid-cols-3 gap-4">
           {wishlistItems.map((item) => (
             <div key={item._id} className="mt-20 w-80 mb-4 ml-5 p-4 border  ">
               <div className="bg-slate-300 p-10">
