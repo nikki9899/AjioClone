@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import React, { useState, useEffect } from "react";
+import { Carousel } from "react-responsive-carousel";
 
 function CarouselWithTimer({ images, interval }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,8 +32,12 @@ function CarouselWithTimer({ images, interval }) {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`mb-8 ${isHovered ? 'hover:scale-105 transition-transform duration-300' : ''}`}
-            style={{ transitionProperty: 'transform' }}
+            className={`mb-8 ${
+              isHovered
+                ? "hover:scale-105 transition-transform duration-300"
+                : ""
+            }`}
+            style={{ transitionProperty: "transform" }}
           >
             <img src={image.src} alt={image.alt} />
           </div>
@@ -44,5 +48,3 @@ function CarouselWithTimer({ images, interval }) {
 }
 
 export default CarouselWithTimer;
-
-

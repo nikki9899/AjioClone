@@ -1,55 +1,91 @@
-import React from "react";
-import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import Navbar from "@/components/headerfooter/header";
 import Footer from "@/components/headerfooter/Footer";
-function Signup() {
+
+export default function Page() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const sendData = async () => {
+    if (!name || !email || !password) {
+      return alert("All fields are mandatory please fill");
+    }
+
+    let result = await fetch("https://backend-liard-eight.vercel.app/api/auth", {
+      method: "POST",
+      body: JSON.stringify({ name, email, password }),
+    });
+     console.log(result)
+    result = await result.json();
+    if (result.success) {
+      alert("Registration Succesful");
+      router.push("/Register");
+    }
+  };
+
   return (
     <div>
-    <Navbar/>
-    <div className=" bg-white  min-h-screen items-center justify-center flex w-full">
-      <div className="  w-96 bg-white shadow-2xl p-4 overflow-hidden">
-        <h1 className="font-Assistant  text-2xl font-semibold mt-4 justify-center flex mb-6">
-          Sign Up
-        </h1>
-        <form>
-          <div className="justify-center flex">
-            <input
-              className="border border-gray-300 text-sm py-2 w-80 leading-6 text-gray-700"
-              type="email"
-              id="exampleInputEmail"
-              placeholder="Enter Your Email"
-              required
-            />
-          </div>
-          <div className="justify-center flex mt-4">
-            <input
-              className="border border-gray-300 text-sm py-2 w-80 leading-6 text-gray-700"
-              type="password"
-              id="exampleInputPassword"
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
-          <div className="justify-center flex">
-           <Link href={"/"}> <button
-              type="submit"
-              className="cursor-pointer mt-2 bg-yellow-400 w-44 text-center rounded py-3 px-4 text-white font-semibold text-base"
+      <Navbar />
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="mx-auto mt-12 w-96 bg-white shadow-2xl p-4 overflow-hidden">
+          <div className="w-88 mx-auto bg-white p-4">
+            <h1 className="text-4xl text-black font-sans">Welcome To AJIO</h1>
+
+            <div className="h-25 mt-10">
+              <p className="text-lg text-gray-700 leading-tight font-sans">
+                Join / Sign In using Email
+              </p>
+            </div>
+
+            <div className="w-72 mx-auto mt-[50px] mb-4">
+              <p className="text-base text-black font-sans mb-2">Name*</p>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="name"
+              />
+            </div>
+
+            <div className="w-72 mx-auto mb-4">
+              <p className="text-base text-black font-sans mb-2">Email*</p>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="email"
+              />
+            </div>
+
+            <div className="w-72 mx-auto mb-4">
+              <p className="text-base text-black font-sans mb-2">Password*</p>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border-b border-black focus:outline-none"
+                placeholder="password"
+              />
+            </div>
+
+            <button
+              className="bg-yellow-400 text-white ml-[30%] rounded w-36 p-4"
+              onClick={sendData}
             >
-              Login
-            </button></Link>
+              Sign Up
+            </button>
           </div>
-          <p className="py-3 text-sm text-stone-400 flex justify-center">
-            Do not have an account?{" "}
-            <Link href={"/Register"}><button className="text-blue-400 font-bold">Continue</button></Link>
-          </p>
-        </form>
-       
+        </div>
       </div>
-    </div>
-    <div><Footer/></div>
-   
+      <div className="mt-20">
+        {" "}
+        <Footer />
+      </div>
     </div>
   );
 }
-
-export default Signup;

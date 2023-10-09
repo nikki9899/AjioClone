@@ -1,10 +1,31 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToWishlist } from "../redux/wishListSlice";
 
-const PopularCard = ({ productTitle, productPrice, productType, productImage }) => {
+const PopularCard = ({
+  productTitle,
+  productPrice,
+  productType,
+  productImage,
+}) => {
+  const dispatch = useDispatch();
+
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const handleButtonClick = () => {
     setButtonClicked(!buttonClicked);
+  };
+
+  const handleAddtoWishlist = ({
+    productTitle,
+    productPrice,
+    productType,
+    productImage,
+  }) => {
+    dispatch(
+      addToWishlist({ productTitle, productPrice, productType, productImage })
+    );
+    console.log(productImage, productPrice, productTitle);
   };
 
   const buttonStyle = {
@@ -21,14 +42,24 @@ const PopularCard = ({ productTitle, productPrice, productType, productImage }) 
         </div>
         <div className="text-center mt-2">
           <span className="text-xl font-semibold">{productTitle}</span>
-          <span className="text-blue-500 text-lg font-semibold block mt-2">{productPrice}</span>
+          <span className="text-blue-500 text-lg font-semibold block mt-2">
+            {productPrice}
+          </span>
           <span className="text-gray-500 text-sm">{productType}</span>
         </div>
         <div className="flex justify-center">
           <button
             className="text-black mt-2 text-sm py-2 px-4 border-blue-600 border-2 rounded-full text-center"
             style={buttonStyle}
-            onClick={handleButtonClick}
+            onClick={() => {
+              handleButtonClick();
+              handleAddtoWishlist({
+                productTitle,
+                productPrice,
+                productType,
+                productImage,
+              });
+            }}
           >
             {buttonClicked ? "Added to Wishlist" : "Add to Wishlist"}
           </button>
@@ -39,8 +70,3 @@ const PopularCard = ({ productTitle, productPrice, productType, productImage }) 
 };
 
 export default PopularCard;
-
-
-
-
-
