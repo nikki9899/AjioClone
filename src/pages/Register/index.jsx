@@ -22,7 +22,7 @@ export default function Page() {
     result = await result.json();
     if (result.success) {
       alert("Registration Succesful");
-      router.push("/Register");
+      router.push("/login");
     }
   };
 

@@ -38,14 +38,15 @@ function Navbar() {
           </Link>
         </div>
         <div className="h-1/2 w-full border border-transparent flex justify-between items-center font-sans text-sm text-gray-600 mt-1">
-          <p className="hover:font-bold hover:cursor-pointer">MEN</p>
+          
+          <p className=" hidden md:flex  block hover:font-bold hover:cursor-pointer">MEN</p>
           <Link href={"/productpage"}>
             {" "}
-            <p className="hover:font-bold hover:cursor-pointer">WOMEN</p>
+            <p className=" hidden md:flex hover:font-bold hover:cursor-pointer">WOMEN</p>
           </Link>
-          <p className="hover:font-bold hover:cursor-pointer">KIDS</p>
-          <p className="hover:font-bold hover:cursor-pointer">INDIE</p>
-          <p className="hover:font-bold hover:cursor-pointer">
+          <p className="hidden md:flex hover:font-bold hover:cursor-pointer">KIDS</p>
+          <p className=" hidden md:flex hover:font-bold hover:cursor-pointer">INDIE</p>
+          <p className="hidden md:flex hover:font-bold hover:cursor-pointer">
             HOME AND KITCHEN
           </p>
           <input
