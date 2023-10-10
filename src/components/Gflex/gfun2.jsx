@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 function gfun2() {
   return (
     <div>
-      <Carousel showThumbs={false}>
+      <Carousel >
         <div className="flex ">
           <div className=" relative group overflow-hidden">
             <img
